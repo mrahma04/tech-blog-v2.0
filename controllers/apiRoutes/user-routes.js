@@ -84,12 +84,13 @@ router.post('/login', async (req, res) => {
             req.status(400).json({ message: 'No user with that email address!' })
             return
         }
+        // check password input in the req.body
+        // against password stored in database...user.dataValues.password
         const validPassword = await user.checkPassword(req.body.password, user.dataValues.password)
         if (!validPassword) {
             res.status(400).json({ message: 'Incorrect password!' })
             return
         }
-
         res.status(200).json({ user, message: 'You are now logged in!' })
 
     } catch (err) {
