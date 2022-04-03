@@ -15,9 +15,17 @@ Post.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        content: {
+        post_content: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        // foreign key is user_id
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'user',
+                key: 'id'
+            }
         }
     },
     {
