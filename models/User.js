@@ -43,7 +43,6 @@ User.init(
             // { id: 1, username: 'dummy', email: 'dummy@dummy.com', password: 'password' }
             async beforeCreate(newUserData) {
                 newUserData.password = await bcrypt.hash(newUserData.password, 10)
-                console.log(newUserData)
                 return newUserData
             }
         },
