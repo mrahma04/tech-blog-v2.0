@@ -11,6 +11,7 @@ const seedAll = async () => {
     console.log('Posts seeded')
     await seedComments()
     console.log('Comments seeded')
+    sequelize.close()
 }
 
 seedAll()
