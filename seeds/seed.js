@@ -6,6 +6,7 @@ const postSeedData = require('./postSeedData.json')
 const commentSeedData = require('./commentSeedData.json')
 
 const seedDatabase = async () => {
+    console.log('Opening connection to DB...')
     await sequelize.sync({ force: true })
     await User.bulkCreate(userSeedData, { individualHooks: true })
     console.log('Users seeded')
@@ -13,6 +14,7 @@ const seedDatabase = async () => {
     console.log('Posts seeded')
     await Comment.bulkCreate(commentSeedData, { individualHooks: true })
     console.log('Comments seeded')
+    console.log('Closing connection to DB...')
     sequelize.close()
 }
 

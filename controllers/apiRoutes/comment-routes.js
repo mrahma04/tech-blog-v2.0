@@ -9,14 +9,12 @@ router.get('/', async (req, res) => {
                 {
                     model: Post,
                     attributes: ['title', 'post_content']
-                }
-            ],
-            include: [
+                },
                 {
                     model: User,
                     attributes: ['username']
                 }
-            ],
+            ]
         })
         res.status(200).json(dbCommentData)
     } catch (err) {
@@ -38,3 +36,5 @@ router.post('/', async (req, res) => {
         req.status(500).json(err)
     }
 })
+
+module.exports = router
