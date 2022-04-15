@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "startDev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "sequelize": "^6.17.0"
   },
   "devDependencies": {
-    "@faker-js/faker": "^6.1.1"
+    "@faker-js/faker": "^6.1.1",
+    "nodemon": "^2.0.15"
   }
 }

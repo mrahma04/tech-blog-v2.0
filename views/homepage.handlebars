@@ -1,1 +1,8 @@
-<div>You are on the homepage</div>
+{{#each posts as |post|}}
+<div class="col-12 col-md-12">
+    <div class="card">
+        <h3 class="card-header">{{post.title}}</h3>
+        <p>{{post.post_content}}</p>
+    </div>
+</div>
+{{/each}}

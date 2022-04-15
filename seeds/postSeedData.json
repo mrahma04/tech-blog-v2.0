@@ -3,5 +3,19 @@
         "title": "HELLO1",
         "post_content": "HELLO1 CONTENT1",
         "user_id": 1
+    },
+    {
+        "title": "HELLO2",
+        "post_content": "HELLO2 CONTENT2",
+        "user_id": 1
+    },    {
+        "title": "HELLO3",
+        "post_content": "HELLO1 CONTENT3",
+        "user_id": 1
+    },
+    {
+        "title": "HELLO4",
+        "post_content": "HELLO4 CONTENT4",
+        "user_id": 1
     }
 ]
