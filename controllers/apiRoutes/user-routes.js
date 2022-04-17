@@ -44,7 +44,13 @@ router.post('/', async (req, res) => {
             email: req.body.email,
             password: req.body.password
         })
-        res.status(200).json(dbUserData)
+        req.session.save(() => {
+            req.session.user_id = dbUserData.id,
+            req.session.username = dbUserData.username,
+            req.session.loggedIn = true
+
+            res.status(200).json(dbUserData)
+        })
     } catch (err) {
         console.error(err)
         res.status(500).json(err)
@@ -76,12 +82,12 @@ router.post('/login', async (req, res) => {
     try {
         const user = await User.findOne({
             where: {
-                email: req.body.email
+                username: req.body.username
             }
         })
         // console.log(user)
         if (!user) {
-            req.status(400).json({ message: 'No user with that email address!' })
+            req.status(400).json({ message: 'Username not found!' })
             return
         }
         // check password input in the req.body
@@ -91,11 +97,27 @@ router.post('/login', async (req, res) => {
             res.status(400).json({ message: 'Incorrect password!' })
             return
         }
-        res.status(200).json({ user, message: 'You are now logged in!' })
 
+        req.session.save(() => {
+            req.session.user_id = user.id,
+            req.session.username = user.username,
+            req.session.loggedIn = true
+
+            res.status(200).json({ user, message: 'You are now logged in!' })
+        })
     } catch (err) {
         console.error(err)
         res.status(500).json(err)
+    }
+})
+
+router.post('/logout', async (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end()
+        })
+    } else {
+        res.status(404).end()
     }
 })
 

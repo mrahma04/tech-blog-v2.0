@@ -2,6 +2,7 @@ const router = require('express').Router()
 const { Post } = require('../models')
 
 router.get('/', async (req, res) => {
+    console.log(req.session)
     try {
         const dbPostData = await Post.findAll({
             attributes: ['title', 'post_content']
@@ -19,6 +20,10 @@ router.get('/', async (req, res) => {
 
 router.get('/login', async (req, res) => {
     try {
+        if (req.session.loggedIn) {
+            res.redirect('/')
+            return
+        }
         res.render('login')
     } catch (err) {
         console.error(err)
