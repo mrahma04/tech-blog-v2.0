@@ -1,18 +1,8 @@
-{{!-- {{#each posts as |post|}}
-<div class="col-12 col-md-12">
-    <div class="card">
-        <h3 class="card-header">{{post.title}}</h3>
-        <p>{{post.post_content}}</p>
-    </div>
-</div>
-{{/each}} --}}
-
-{{#each posts as |post|}}
 <div class="col-12 col-md-12">
     <div class="card">
         <h3 class="card-header" style="display: flex; justify-content: space-between;">
             <div>
-                <a href="/post/{{post.id}}" style="text-decoration: none; color: var(--primary)">{{post.title}}</a>
+                {{post.title}}
             </div>
             <div style="font-weight: normal; font-size: 1rem;">
                 Posted by {{post.user.username}} on {{post.created_at}}
@@ -21,4 +11,3 @@
         <p>{{post.post_content}}</p>
     </div>
 </div>
-{{/each}}
