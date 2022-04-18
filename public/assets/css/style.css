@@ -54,7 +54,7 @@ p {
 
 textarea {
   min-width: 40%;
-  min-height: 100px;
+  /* min-height: 100px; */
 }
 
 textarea, input {
