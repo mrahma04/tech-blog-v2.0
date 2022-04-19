@@ -3,5 +3,15 @@
         "username": "mbrahman",
         "email": "mbrahman@gmail.com",
         "password": "password"
+    },
+    {
+        "username": "USER2",
+        "email": "USER2@TEST.COM",
+        "password": "password"
+    },
+    {
+        "username": "USER3",
+        "email": "USER3@TEST.COM",
+        "password": "password"
     }
 ]

@@ -3,5 +3,10 @@
         "comment_text": "COMMENT1",
         "user_id": 1,
         "post_id": 1
+    },
+    {
+        "comment_text": "COMMENT2",
+        "user_id": 2,
+        "post_id": 1
     }
 ]

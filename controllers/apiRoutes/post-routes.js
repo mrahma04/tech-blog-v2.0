@@ -1,12 +1,20 @@
 const router = require('express').Router()
-const { Post, User } = require('../../models')
+const { Post, User, Comment } = require('../../models')
+const sequelize = require('../../config/connection')
 
 router.get('/', async (req, res) => {
     try {
         const dbPostData = await Post.findAll({
-            attributes: ['id', 'title', 'post_content', 'created_at'],
-            // JOIN statement
+            attributes: ['title', 'post_content', [sequelize.fn('DATE_FORMAT', sequelize.col('post.created_at'), '%d/%m/%Y'), 'post_created_at']],
             include: [
+                {
+                    model: Comment,
+                    attributes: ['comment_text', 'user_id', [sequelize.fn('DATE_FORMAT', sequelize.col('comments.created_at'), '%d/%m/%Y'), 'comment_created_at']],
+                    include: {
+                        model: User,
+                        attributes: ['username']
+                    }
+                },
                 {
                     model: User,
                     attributes: ['username']
