@@ -57,6 +57,49 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.post('/login', async (req, res) => {
+    try {
+        const user = await User.findOne({
+            where: {
+                username: req.body.username
+            }
+        })
+        // console.log(user)
+        if (!user) {
+            req.status(400).json({ message: 'Username not found!' })
+            return
+        }
+        // check password input in the req.body
+        // against password stored in database...user.dataValues.password
+        const validPassword = user.checkPassword(req.body.password, user.dataValues.password)
+        if (!validPassword) {
+            res.status(400).json({ message: 'Incorrect password!' })
+            return
+        }
+        req.session.save(() => {
+            req.session.user_id = user.id
+            req.session.username = user.username
+            req.session.loggedIn = true
+
+            res.json({ user: user, message: 'You are now logged in!' })
+            // res.status(200).redirect('dashboard')
+        })
+    } catch (err) {
+        console.error(err)
+        res.status(500).json(err)
+    }
+})
+
+router.post('/logout', async (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end()
+        })
+    } else {
+        res.status(404).end()
+    }
+})
+
 router.delete('/:id', async (req, res) => {
     try {
         const user = await User.destroy({
@@ -78,47 +121,5 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
-router.post('/login', async (req, res) => {
-    try {
-        const user = await User.findOne({
-            where: {
-                username: req.body.username
-            }
-        })
-        // console.log(user)
-        if (!user) {
-            req.status(400).json({ message: 'Username not found!' })
-            return
-        }
-        // check password input in the req.body
-        // against password stored in database...user.dataValues.password
-        const validPassword = await user.checkPassword(req.body.password, user.dataValues.password)
-        if (!validPassword) {
-            res.status(400).json({ message: 'Incorrect password!' })
-            return
-        }
-
-        req.session.save(() => {
-            req.session.user_id = user.id
-            req.session.username = user.username
-            req.session.loggedIn = true
-
-            res.json({ user: user, message: 'You are now logged in!' })
-        })
-    } catch (err) {
-        console.error(err)
-        res.status(500).json(err)
-    }
-})
-
-router.post('/logout', async (req, res) => {
-    if (req.session.loggedIn) {
-        req.session.destroy(() => {
-            res.status(204).end()
-        })
-    } else {
-        res.status(404).end()
-    }
-})
 
 module.exports = router

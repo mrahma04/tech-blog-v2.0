@@ -12,7 +12,10 @@ const loginFormHandler = async (event) => {
             headers: { 'Content-Type': 'application/json' }
         })
         if (res.ok) {
-            document.location.replace('/dashboard')
+            const resJson = await res.json()
+            console.log(resJson)
+            document.location.replace('/dashboard/')
+            // console.log(`You're now logged in!`)
         } else {
             alert(res.statusText)
         }

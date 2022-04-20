@@ -4,19 +4,31 @@ const { Post, User, Comment } = require('../models')
 
 router.get('/', async (req, res) => {
     try {
-        // const dbPostData = await Post.findAll({
-        //     where: {
-        //         user_id: req.session.user_id
-        //     },
-        //     attributes: ['id', 'title', 'post_content', [sequelize.fn('DATE_FORMAT', sequelize.col('created_at'), '%d/%m/%Y'), 'created_at']],
-        //     include: [
-        //         {
-        //             model: User,
-        //             attributes: ['username']
-        //         }
-        //     ]
-        // })
-        res.render('dashboard', { loggedIn: true })
+        console.log(req.session);
+        console.log('======================');
+        const dbPostData = await Post.findAll({
+            where: {
+                user_id: req.session.user_id
+            },
+            attributes: ['id', 'title', 'post_content', 'created_at'],
+            include: [
+                {
+                    model: Comment,
+                    attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                    include: {
+                        model: User,
+                        attributes: ['username']
+                    }
+                },
+                {
+                    model: User,
+                    attributes: ['username']
+                }
+            ]
+        })
+        const posts = dbPostData.map(post => post.get({ plain: true }))
+        console.log('SECOND', req.session)
+        res.render('dashboard', { posts, loggedIn: true })
     } catch (err) {
         console.log(err)
         res.status(500).json(err)
