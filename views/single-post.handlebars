@@ -1,4 +1,4 @@
-<div class="col-12 col-md-12">
+{{!-- <div class="col-12 col-md-12">
     <div class="card">
         <h3 class="card-header" style="display: flex; justify-content: space-between;">
             <div>
@@ -10,6 +10,9 @@
         </h3>
         <p>{{post.post_content}}</p>
     </div>
+</div> --}}
+<div>
+    {{> post-info post}}
 </div>
 {{#if loggedIn}}
 <div class="col-12 col-md-12">
@@ -31,18 +34,7 @@
     </div>
 </div>
 {{/if}}
-{{#each post.comments as |comment|}}
-<div class="col-12 col-md-12">
-    <div class="card">
-        <h3 class="card-header" style="display: flex; justify-content: space-between;">
-            <div style="font-weight: normal; font-size: 1rem;">
-                Posted by {{user.username}} on {{comment_created_at}}
-            </div>
-        </h3>
-        <p>{{comment_text}}</p>
-    </div>
-</div>
-{{/each}}
+{{> comments post.comments}}
 {{#if loggedIn}}
 <script src="/assets/javascript/comment.js"></script>
 {{/if}}

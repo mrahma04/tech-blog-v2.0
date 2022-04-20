@@ -47,7 +47,7 @@ p {
 }
 
 .p-class {
-  font-size: 1.2 rem;
+  font-size: 1.2rem;
   /* padding: 1.5%; */
   margin: 0;
 }
@@ -80,7 +80,7 @@ textarea:focus, input:focus {
   border: none;
   outline: none;
   background-color: var(--light-dark);
-  box-shadow: 3px 3px var(--dark);
+  /* box-shadow: 3px 3px var(--dark); */
   transform: translate(-1px, -1px);
 }
 
@@ -88,7 +88,7 @@ textarea:focus, input:focus {
   color: var(--primary);
   background-color: var(--tertiary);
   transform: translate(0, 0);
-  box-shadow: 2px 2px var(--dark);
+  /* box-shadow: 2px 2px var(--dark); */
 }
 
 .btn-inline {

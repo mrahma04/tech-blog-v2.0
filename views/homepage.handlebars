@@ -7,18 +7,10 @@
 </div>
 {{/each}} --}}
 
-{{#each posts as |post|}}
-<div class="col-12 col-md-12">
-    <div class="card">
-        <h3 class="card-header" style="display: flex; justify-content: space-between;">
-            <div>
-                <a href="/post/{{post.id}}" style="text-decoration: none; color: var(--primary)">{{post.title}}</a>
-            </div>
-            <div style="font-weight: normal; font-size: 1rem;">
-                Posted by {{post.user.username}} on {{post.created_at}}
-            </div>
-        </h3>
-        <p>{{post.post_content}}</p>
+<div>
+    {{#each posts as |post|}}
+    <div>
+        {{> post-info post}}
     </div>
+    {{/each}}
 </div>
-{{/each}}

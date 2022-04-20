@@ -6,7 +6,8 @@ router.get('/', async (req, res) => {
     console.log(req.session)
     try {
         const dbPostData = await Post.findAll({
-            attributes: ['id', 'title', 'post_content', [sequelize.fn('DATE_FORMAT', sequelize.col('created_at'), '%d/%m/%Y'), 'created_at']],
+            // attributes: ['id', 'title', 'post_content', [sequelize.fn('DATE_FORMAT', sequelize.col('created_at'), '%d/%m/%Y'), 'created_at']],
+            attributes: ['id', 'title', 'post_content', 'created_at'],
             include: [
                 {
                     model: User,
@@ -17,8 +18,8 @@ router.get('/', async (req, res) => {
         // get method serializes the object
         // turns the JavaScript object into a JSON string that's fed into the handlebars templates
         const posts = dbPostData.map(post => post.get({ plain: true }))
-        console.log(posts)
-        res.render('homepage', { posts, loggedIn: req.session.loggedIn })
+        // console.log(posts)
+        res.render('homepage', { loggedIn: req.session.loggedIn, posts })
     } catch (err) {
         console.error(err)
         res.status(500).json(err)
@@ -31,11 +32,13 @@ router.get('/post/:id', async (req, res) => {
             where: {
                 id: req.params.id
             },
-            attributes: ['title', 'post_content', [sequelize.fn('DATE_FORMAT', sequelize.col('post.created_at'), '%d/%m/%Y'), 'post_created_at']],
+            // attributes: ['title', 'post_content', [sequelize.fn('DATE_FORMAT', sequelize.col('post.created_at'), '%d/%m/%Y'), 'post_created_at']],
+            attributes: ['title', 'post_content', 'created_at'],
             include: [
                 {
                     model: Comment,
-                    attributes: ['comment_text', 'user_id', [sequelize.fn('DATE_FORMAT', sequelize.col('comments.created_at'), '%d/%m/%Y'), 'comment_created_at']],
+                    // attributes: ['comment_text', 'user_id', [sequelize.fn('DATE_FORMAT', sequelize.col('comments.created_at'), '%d/%m/%Y'), 'comment_created_at']],
+                    attributes: ['comment_text', 'user_id', 'created_at'],
                     include: {
                         model: User,
                         attributes: ['username']

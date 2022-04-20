@@ -3,6 +3,7 @@ const routes = require('./controllers')
 const sequelize = require('./config/connection')
 const path = require('path')
 const exphbs = require('express-handlebars')
+const helpers = require('./utils/helpers')
 
 const session = require('express-session')
 // connect-session-sequelize package return a FUNCTION
@@ -25,7 +26,7 @@ require('dotenv').config()
 const PORT = process.env.PORT || 4001
 
 const app = express()
-const hbs = exphbs.create({})
+const hbs = exphbs.create({ helpers })
 
 app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars')

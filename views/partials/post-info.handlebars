@@ -1,0 +1,15 @@
+<article>
+    <div class="col-12 col-md-12">
+        <div class="card">
+            <h3 class="card-header" style="display: flex; justify-content: space-between;">
+                <div>
+                    <a href="/post/{{id}}" style="text-decoration: none; color: var(--primary)">{{title}}</a>
+                </div>
+                <div style="font-weight: normal; font-size: 1rem;">
+                    Posted by {{user.username}} on {{format_date created_at}}
+                </div>
+            </h3>
+            <p>{{post_content}}</p>
+        </div>
+    </div>
+</article>
