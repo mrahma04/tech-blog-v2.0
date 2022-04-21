@@ -36,6 +36,19 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')))
 
+// use a middleware to intercept requests before
+// being sent to 'routes' below
+// res.locals will be sent to handlebars
+app.use("*", (req, res, next) => {
+    // res.locals.title = req.baseUrl
+    if (req.baseUrl === '/dashboard') {
+        res.locals.title = 'Your Dashboard'
+    } else {
+        res.locals.title = 'The Tech Blog'
+    }
+    next()
+})
+
 app.use(routes)
 
 sequelize.sync({ force: false })

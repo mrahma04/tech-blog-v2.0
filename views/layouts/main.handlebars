@@ -28,14 +28,15 @@
                 style="text-decoration: none; color: var(--primary); max-width: 75%; padding-bottom: 1.5%; font-size: 1.2rem">Login</a>
             {{/if}}
         </nav>
-        <h1 class="app-title">The Tech Blog</h1>
+        <h1 class="app-title">{{title}}</h1>
     </header>
     <main class=""">
         {{{body}}}
     </main>
     {{#if loggedIn}}
-    <script src="/assets/js/logout.js"></script>
-    {{/if}}
+    <script src=" /assets/js/logout.js">
+    </script>
+        {{/if}}
 </body>
 
 </html>
