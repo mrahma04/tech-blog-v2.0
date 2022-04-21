@@ -76,11 +76,11 @@ router.post('/login', async (req, res) => {
             res.status(400).json({ message: 'Incorrect password!' })
             return
         }
-        req.session.save(() => {
-            req.session.user_id = user.id
-            req.session.username = user.username
-            req.session.loggedIn = true
 
+        req.session.user_id = user.id
+        req.session.username = user.username
+        req.session.loggedIn = true
+        req.session.save(() => {
             res.json({ user: user, message: 'You are now logged in!' })
             // res.status(200).redirect('dashboard')
         })
