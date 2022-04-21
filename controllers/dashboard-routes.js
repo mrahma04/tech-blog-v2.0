@@ -36,4 +36,18 @@ router.get('/', withAuth, async (req, res) => {
     }
 })
 
+router.get('/edit/:id', async (req, res) => {
+    try {
+        const dbPostData = await Post.findByPk(req.params.id, {
+            attributes: ['id', 'title', 'post_content']
+        })
+        const post = dbPostData.get({ plain: true })
+        console.log('===EDIT===', post)
+        res.status(200).render('edit-post', { post })
+    } catch (err) {
+        console.log(err)
+        res.status(500).json(err)
+    }
+})
+
 module.exports = router

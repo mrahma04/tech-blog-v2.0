@@ -18,9 +18,9 @@
         <nav class="flex-row" style="gap: 96px;">
             <a href="/"
                 style="text-decoration: none; color: var(--primary); max-width: 75%; padding-bottom: 1.5%; font-size: 1.2rem">Home</a>
-            {{#if loggedIn}}
             <a href="/dashboard"
                 style="text-decoration: none; color: var(--primary); max-width: 75%; padding-bottom: 1.5%; font-size: 1.2rem">Dashboard</a>
+            {{#if loggedIn}}
             <button id="logout"
                 style="all: unset; cursor: pointer; max-width: 75%; padding-bottom: 1.5%; font-size: 1.2rem">Logout</button>
             {{else}}
@@ -34,7 +34,7 @@
         {{{body}}}
     </main>
     {{#if loggedIn}}
-    <script src="/assets/javascript/logout.js"></script>
+    <script src="/assets/js/logout.js"></script>
     {{/if}}
 </body>
 
