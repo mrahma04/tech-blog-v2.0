@@ -80,13 +80,9 @@ router.post('/', async (req, res) => {
     }
 })
 
-router.put('/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
     try {
-        const dbPostData = await Post.update(
-            {
-                title: req.body.title,
-                post_content: req.body.post_content,
-            },
+        const dbPostData = await Post.destroy(
             {
                 where: {
                     id: req.params.id
