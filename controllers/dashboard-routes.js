@@ -36,7 +36,7 @@ router.get('/', withAuth, async (req, res) => {
     }
 })
 
-router.get('/edit/:id', async (req, res) => {
+router.get('/edit/:id', withAuth, async (req, res) => {
     try {
         const dbPostData = await Post.findByPk(req.params.id, {
             attributes: ['id', 'title', 'post_content']
@@ -46,6 +46,15 @@ router.get('/edit/:id', async (req, res) => {
         res.status(200).render('edit-post', { post })
     } catch (err) {
         console.log(err)
+        res.status(500).json(err)
+    }
+})
+
+router.get('/new-post', withAuth, async (req, res) => {
+    try {
+        res.render('new-post')
+    } catch (err) {
+        console.error(err)
         res.status(500).json(err)
     }
 })

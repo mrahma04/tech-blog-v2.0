@@ -89,13 +89,13 @@ router.get('/signup', async (req, res) => {
     }
 })
 
-router.get('/new-post', async (req, res) => {
-    try {
-        res.render('new-post')
-    } catch (err) {
-        console.error(err)
-        res.status(500).json(err)
-    }
-})
+// router.get('/new-post', async (req, res) => {
+//     try {
+//         res.render('new-post')
+//     } catch (err) {
+//         console.error(err)
+//         res.status(500).json(err)
+//     }
+// })
 
 module.exports = router
