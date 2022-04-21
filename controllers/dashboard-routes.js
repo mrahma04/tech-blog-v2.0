@@ -43,7 +43,7 @@ router.get('/edit/:id', withAuth, async (req, res) => {
         })
         const post = dbPostData.get({ plain: true })
         console.log('===EDIT===', post)
-        res.status(200).render('edit-post', { post })
+        res.status(200).render('edit-post', { post, loggedIn: true })
     } catch (err) {
         console.log(err)
         res.status(500).json(err)
@@ -52,7 +52,7 @@ router.get('/edit/:id', withAuth, async (req, res) => {
 
 router.get('/new-post', withAuth, async (req, res) => {
     try {
-        res.render('new-post')
+        res.render('new-post', { loggedIn: true })
     } catch (err) {
         console.error(err)
         res.status(500).json(err)

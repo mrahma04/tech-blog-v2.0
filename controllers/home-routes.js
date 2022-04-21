@@ -33,7 +33,7 @@ router.get('/post/:id', async (req, res) => {
                 id: req.params.id
             },
             // attributes: ['title', 'post_content', [sequelize.fn('DATE_FORMAT', sequelize.col('post.created_at'), '%d/%m/%Y'), 'post_created_at']],
-            attributes: ['title', 'post_content', 'created_at'],
+            attributes: ['id', 'title', 'post_content', 'created_at'],
             include: [
                 {
                     model: Comment,
