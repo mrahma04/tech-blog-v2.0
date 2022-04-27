@@ -59,13 +59,13 @@ THEN I am able to view comments but I am prompted to log in again before I can a
 ##### Homepage
 ![](./public/assets/img/2022-04-27-13-10-28.png)
 
-##### Signup
+##### Signup page
 ![](./public/assets/img/2022-04-27-13-12-37.png)
 
 ##### Login page
 ![](./public/assets/img/2022-04-27-13-15-36.png)
 
-##### User Dashboard
+##### User dashboard
 ![](./public/assets/img/2022-04-27-13-13-36.png)
 
 ##### Create new post
