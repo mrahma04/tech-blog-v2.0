@@ -57,4 +57,25 @@ THEN I am able to view comments but I am prompted to log in again before I can a
 #### Screenshots
 
 ##### Homepage
-![](2022-04-27-13-10-28.png)
+![](./public/assets/img/2022-04-27-13-10-28.png)
+
+##### Signup
+![](./public/assets/img/2022-04-27-13-12-37.png)
+
+##### Login page
+![](./public/assets/img/2022-04-27-13-15-36.png)
+
+##### User Dashboard
+![](./public/assets/img/2022-04-27-13-13-36.png)
+
+##### Create new post
+![](./public/assets/img/2022-04-27-13-14-08.png)
+
+##### User dashboard with posts
+![](./public/assets/img/2022-04-27-13-14-34.png)
+
+##### Edit + delete user's post
+![](./public/assets/img/2022-04-27-13-16-40.png)
+
+##### Adding comment to existing post
+![](./public/assets/img/2022-04-27-13-15-04.png)
